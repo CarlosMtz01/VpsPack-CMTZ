@@ -619,6 +619,11 @@ clear
 if [[ $1 == "" ]]
 then
 echo -e "\033[1;37m       VpsPack V2 © US \033[0m"
+echo -e "\033[1;37m  _____         _            _____ _        \033[0m"
+echo -e "\033[1;37m |     |___ ___| |___ ___   |     | |_ ___  \033[0m"
+echo -e "\033[1;37m |   --| .'|  _| | . |_ -|  | | | |  _|- _| \033[0m"
+echo -e "\033[1;37m |_____|__,|_| |_|___|___|  |_|_|_|_| |___| \033[0m"
+echo -e "\033[1;37m                                            \033[0m"
 echo -e "\033[1;37mEscoja una opcion:    Para Salir Ctrl + C\033[1;33m
 [\033[1;30m01\033[1;33m]    Traducido Y mejorado por: Carlos Mtz.    \033[1;33m
 [\033[1;30m01\033[1;33m] Configurar_Squid_SSH \033[1;30m(Squid y OpenSSH Configuracion)\033[1;33m
