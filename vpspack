@@ -764,5 +764,3 @@ case $opcao in
    rm -rf /bin/limite 2>/dev/null
    rm -rf /bin/criarusuario 2>/dev/null
    rm -rf /bin/vpspack 2>/dev/null;;
-esac
-done
