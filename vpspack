@@ -402,19 +402,16 @@ done
 function cpu(){
 clear
 htop
-done
 }
 function puertos(){
 clear
 netstat -a | more
-done
 }
 function fail(){
 clear
 apt-get update && apt-get -y upgrade
 apt-get install fail2ban
 service fail2ban restart
-done
 }
 function webmin(){
 clear
