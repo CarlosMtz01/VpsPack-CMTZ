@@ -733,7 +733,7 @@ case $opcao in
   1 | 01 )
    configurarsquid;;
   2 | 02 )
-   read -p "Usuario: " user
+   read -p "Usuario a poner limite: " user
    read -p "Limite: " limite
    limite $user $limite;;
   3 | 03 )
