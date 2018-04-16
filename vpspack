@@ -381,6 +381,61 @@ echo $dataexpn
 fi
 done
 }
+function monidrop(){
+clear
+data=( `ps aux | grep -i dropbear | awk '{print $2}'`);
+
+echo "Usuarios en Dropbear";
+echo "---";
+
+for PID in "${data[@]}"
+do
+	#echo "check $PID";
+	NUM=`cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep "dropbear\[$PID\]" | wc -l`;
+	USER=`cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep "dropbear\[$PID\]" | awk '{print $10}'`;
+	IP=`cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep "dropbear\[$PID\]" | awk '{print $12}'`;
+	if [ $NUM -eq 1 ]; then
+		echo "$PID - $USER - $IP";
+	fi
+done
+}
+function cpu(){
+clear
+htop
+done
+}
+function puertos(){
+clear
+netstat -a | more
+done
+}
+function fail(){
+clear
+apt-get update && apt-get -y upgrade
+apt-get install fail2ban
+service fail2ban restart
+done
+}
+function webmin(){
+clear
+wget http://www.webmin.com/jcameron-key.asc
+sudo apt-key add jcameron-key.asc
+rm jcameron-key.asc
+
+sudo echo "" >> /etc/apt/sources.list
+sudo echo "deb http://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list
+
+sudo apt-get update
+sudo apt-get install webmin
+done
+}
+function informacion(){
+clear
+echo -e "\033[1;37mEste script fue modificado y traducido por CarlosMtz\033[0m"
+echo -e "\033[1;37mAlias Telegram: @CarlosMtz\033[0m"
+echo -e "\033[1;37mCreditos a su respectivo creador.\033[0m"
+done
+}
 function criarusuarioteste(){
 mkdir /etc/usuariosteste 1>/dev/null 2>/dev/null
 echo -e "   Usuarios de prueba"
@@ -618,7 +673,7 @@ done
 clear
 if [[ $1 == "" ]]
 then
-echo -e "\033[1;37m       VpsPack V2 © US \033[0m"
+echo -e "\033[1;37m       VpsPack V2.5 © US \033[0m"
 echo -e "\033[1;37m  _____         _            _____ _        \033[0m"
 echo -e "\033[1;37m |     |___ ___| |___ ___   |     | |_ ___  \033[0m"
 echo -e "\033[1;37m |   --| .'|  _| | . |_ -|  | | | |  _|- _| \033[0m"
@@ -650,7 +705,14 @@ echo -e "\033[1;37mEscoja una opcion:    Para Salir Ctrl + C\033[1;33m
 [\033[1;30m22\033[1;33m] Speedtest \033[1;30m(Prueba de conexion [velocidade de banda])\033[1;33m
 [\033[1;30m23\033[1;33m] Sistema_Detalles \033[1;30m(Detalles sobre el Sistema)\033[1;33m
 [\033[1;30m24\033[1;33m] Borrar_Todos \033[1;30m(Todos los usuarios seran eliminados)\033[1;33m
-[\033[1;30m25\033[1;33m] Desinstalar \033[1;30m(Remover VpsPack)\033[0m"
+[\033[1;30m25\033[1;33m] Monitorear_Dropbear \033[1;30m(Monitorear conexiones dropbear)\033[0m"
+[\033[1;30m26\033[1;33m] Info_CPU_Memoria \033[1;30m(Informacion del CPU y Memoria RAM, teclee Q para salir)\033[0m"
+[\033[1;30m27\033[1;33m] Puertos_TCP_UDP \033[1;30m(Ver puertos que estan en uso)\033[0m"
+[\033[1;30m00\033[1;33m] ******Instaladores Estra***** \033[1;30m(Funciones Experimentales)\033[0m"
+[\033[1;30m28\033[1;33m] Fail2Ban \033[1;30m(Experimental)\033[0m"
+[\033[1;30m29\033[1;33m] WebMIn \033[1;30m(Instalacion de WebMin Puerto 10000)\033[0m"
+[\033[1;30m30\033[1;33m] Info \033[1;30m(Información del script)\033[0m"
+[\033[1;30m100\033[1;33m] Desinstalar \033[1;30m(Remover VpsPack)\033[0m"
 read -p ": " opcao
 else
 opcao=$1
@@ -707,6 +769,18 @@ case $opcao in
   24)
    deletar_todos;;
   25)
+   monidrop;;
+  26)
+   cpu;;
+  27)
+   puertos;;
+  28)
+   fail;;
+  29)
+   webmin;;
+  30)
+   informacion;;
+  100)
    rm -rf /bin/speedtest.py 2>/dev/null
    rm -rf /bin/deletarusuario 2>/dev/null
    rm -rf /bin/redefinirusuario 2>/dev/null
