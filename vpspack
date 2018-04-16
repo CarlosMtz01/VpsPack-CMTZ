@@ -397,7 +397,6 @@ do
 	if [ $NUM -eq 1 ]; then
 		echo "$PID - $USER - $IP";
 	fi
-done
 }
 function cpu(){
 clear
@@ -424,14 +423,12 @@ sudo echo "deb http://download.webmin.com/download/repository sarge contrib" >> 
 
 sudo apt-get update
 sudo apt-get install webmin
-done
 }
 function informacion(){
 clear
 echo -e "\033[1;37mEste script fue modificado y traducido por CarlosMtz\033[0m"
 echo -e "\033[1;37mAlias Telegram: @CarlosMtz\033[0m"
 echo -e "\033[1;37mCreditos a su respectivo creador.\033[0m"
-done
 }
 function criarusuarioteste(){
 mkdir /etc/usuariosteste 1>/dev/null 2>/dev/null
