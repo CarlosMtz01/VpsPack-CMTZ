@@ -745,8 +745,6 @@ case $opcao in
    sistemadetalhes;;
   24)
    deletar_todos;;
-  25)
-   monidrop;;
   26)
    cpu;;
   27)
