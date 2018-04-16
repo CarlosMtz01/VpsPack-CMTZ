@@ -413,6 +413,41 @@ echo -e "\033[1;37mEste script fue modificado y traducido por CarlosMtz\033[0m"
 echo -e "\033[1;37mAlias Telegram: @CarlosMtz\033[0m"
 echo -e "\033[1;37mCreditos a su respectivo creador.\033[0m"
 }
+function monidrop(){
+clear
+data=( `ps aux | grep -i dropbear | awk '{print $2}'`);
+
+echo "Usuarios en Dropbear";
+echo "---";
+
+for PID in "${data[@]}"
+do
+	#echo "check $PID";
+	NUM=`cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep "dropbear\[$PID\]" | wc -l`;
+	USER=`cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep "dropbear\[$PID\]" | awk '{print $10}'`;
+	IP=`cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep "dropbear\[$PID\]" | awk '{print $12}'`;
+	if [ $NUM -eq 1 ]; then
+		echo "$PID - $USER - $IP";
+	fi
+done
+echo "---";
+
+data=( `ps aux | grep "\[priv\]" | sort -k 72 | awk '{print $2}'`);
+
+echo "Usuarios en OpenSSH";
+
+echo "---";
+for PID in "${data[@]}"
+do
+        #echo "check $PID";
+		NUM=`cat /var/log/auth.log | grep -i sshd | grep -i "Accepted password for" | grep "sshd\[$PID\]" | wc -l`;
+		USER=`cat /var/log/auth.log | grep -i sshd | grep -i "Accepted password for" | grep "sshd\[$PID\]" | awk '{print $9}'`;
+		IP=`cat /var/log/auth.log | grep -i sshd | grep -i "Accepted password for" | grep "sshd\[$PID\]" | awk '{print $11}'`;
+        if [ $NUM -eq 1 ]; then
+                echo "$PID - $USER - $IP";
+        fi
+done
+}
 function criarusuarioteste(){
 mkdir /etc/usuariosteste 1>/dev/null 2>/dev/null
 echo -e "   Usuarios de prueba"
@@ -745,6 +780,8 @@ case $opcao in
    sistemadetalhes;;
   24)
    deletar_todos;;
+  25)
+   monidrop;;
   26)
    cpu;;
   27)
