@@ -397,6 +397,7 @@ do
 	if [ $NUM -eq 1 ]; then
 		echo "$PID - $USER - $IP";
 	fi
+done
 }
 function cpu(){
 clear
