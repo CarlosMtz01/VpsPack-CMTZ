@@ -732,10 +732,6 @@ fi
 case $opcao in
   1 | 01 )
    configurarsquid;;
-  2 | 02 )
-   read -p user
-   read -p limite
-   limite $user $limite;;
   3 | 03 )
    criarusuario;;
   4 | 04 )
