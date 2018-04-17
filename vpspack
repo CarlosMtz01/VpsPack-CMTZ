@@ -733,9 +733,8 @@ case $opcao in
   1 | 01 )
    configurarsquid;;
   2 | 02 )
-   echo -e "\n\033[1;30mUsuaeio: \033[0m"
+   echo -e "\n\033[1;30mUsuaeio y Limite\033[0m"
    read -p $user
-   echo -e "\n\033[1;30mLimite: \033[0m"
    read -p $limite
    limite $user $limite;;
   3 | 03 )
